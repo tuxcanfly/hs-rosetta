@@ -1,6 +1,6 @@
 FROM handshakeorg/hsd:latest AS base
 
-RUN apk add --no-cache make gcc g++
+RUN apk add --no-cache make gcc g++ git
 
 WORKDIR /opt/hs-rosetta
 COPY package*.json ./
