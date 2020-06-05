@@ -1,5 +1,14 @@
-FROM node:12.6-buster-slim
+FROM handshakeorg/hsd:latest AS base
 
-RUN npm install handshake-org/hsd
+RUN apk add --no-cache make gcc g++
 
-CMD [ "hsd", "--network=simnet", "--prefix=/data"]
+WORKDIR /opt/hs-rosetta
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm link
+
+WORKDIR /code
+RUN npm link hs-rosetta
+
+CMD [ "hsd", "--plugins", "hs-rosetta", "--index-tx", "--index-address", "--prefix=/data"]
