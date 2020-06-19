@@ -1,9 +1,0 @@
-{
-  "network_identifier": {
-    "blockchain": "handshake",
-    "network": "simnet"
-  },
-  "account_identifier": {
-    "address": "ss1q7q3h4chglps004u3yn79z0cp9ed24rfr9dn5nv"
-  }
-}

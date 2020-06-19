@@ -1,0 +1,1680 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for http.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="prettify.css" />
+    <link rel="stylesheet" href="base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="index.html">All files</a> http.js
+    </h1>
+    <div class='clearfix'>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">31x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*!
+ * http.js - rosetta http server for hsd
+ * Copyright (c) 2020, The Handshake Developers (MIT License).
+ * https://github.com/handshake-org/hs-rosetta
+ */
+&nbsp;
+'use strict';
+&nbsp;
+const assert = require('bsert');
+const path = require('path');
+&nbsp;
+const Validator = require('bval');
+const {Server} = require('bweb');
+&nbsp;
+const base58 = require('bcrypto/lib/encoding/base58');
+const sha256 = require('bcrypto/lib/sha256');
+const random = require('bcrypto/lib/random');
+&nbsp;
+const {NetworkList, NetworkOptions, NetworkStatus} = require('./network');
+const AccountBalance = require('./account');
+const Mempool = require('./mempool');
+const Block = require('./block');
+const BlockMeta = require('./blockmeta');
+const TX = require('./tx');
+const pkg = require('./pkg');
+&nbsp;
+const CovenantTypes = require('./covenant');
+&nbsp;
+/**
+ * HTTP
+ * @alias module:http.Server
+ */
+&nbsp;
+class HTTP extends Server {
+  /**
+   * Create an http server.
+   * @constructor
+   * @param {Object} options
+   */
+&nbsp;
+  constructor(options) {
+    super(new HTTPOptions(options));
+&nbsp;
+    this.logger = this.options.logger.context('hs-rosetta');
+    this.node = this.options.node;
+&nbsp;
+    this.network = this.node.network;
+    this.chain = this.node.chain;
+    this.mempool = this.node.mempool;
+    this.rpc = this.node.rpc;
+    this.pool = this.node.pool;
+&nbsp;
+    assert(this.chain.options.indexTX, 'index-tx is required');
+    assert(this.chain.options.indexAddress, 'index-address is required');
+&nbsp;
+    this.init();
+  }
+&nbsp;
+  /**
+   * Initialize routes.
+   * @private
+   */
+&nbsp;
+  init() {
+    this.on('request', (req, res) =&gt; {
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (req.method === 'POST' &amp;&amp; req.pathname === '/')
+<span class="cstat-no" title="statement not covered" >        return;</span>
+&nbsp;
+      this.logger.debug('Request for method=%s path=%s (%s).',
+        req.method, req.pathname, req.socket.remoteAddress);
+    });
+&nbsp;
+    this.on('listening', (address) =&gt; {
+      this.logger.info('Rosetta HTTP server listening on %s (port=%d).',
+        address.address, address.port);
+    });
+&nbsp;
+    this.on('error', <span class="fstat-no" title="function not covered" >(e</span>rr) =&gt; {
+<span class="cstat-no" title="statement not covered" >      console.error(err);</span>
+    });
+&nbsp;
+    this.initRouter();
+  }
+&nbsp;
+  /**
+   * Initialize routes.
+   * @private
+   */
+&nbsp;
+  initRouter() {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.options.cors)
+<span class="cstat-no" title="statement not covered" >      this.use(this.cors());</span>
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!this.options.noAuth) {
+<span class="cstat-no" title="statement not covered" >      this.use(this.basicAuth({</span>
+        hash: sha256.digest,
+        password: this.options.apiKey,
+        realm: 'node'
+      }));
+    }
+&nbsp;
+    this.use(this.bodyParser({
+      type: 'json'
+    }));
+&nbsp;
+    this.use(this.jsonRPC());
+    this.use(this.router());
+&nbsp;
+    this.error(<span class="fstat-no" title="function not covered" >(e</span>rr, req, res) =&gt; {
+      const code = <span class="cstat-no" title="statement not covered" >err.statusCode || 500;</span>
+<span class="cstat-no" title="statement not covered" >      res.json(code, {</span>
+        code: err.code,
+        message: err.message,
+        retriable: true
+      });
+    });
+&nbsp;
+    this.post('/network/list', async (req, res) =&gt; {
+      const list = new NetworkList(this.network);
+      res.json(200, list.toJSON());
+    });
+&nbsp;
+    this.post('/network/options', async (req, res) =&gt; {
+      const valid = Validator.fromRequest(req);
+      enforce(valid.has('network_identifier'), 'Network is required');
+&nbsp;
+      const blockchain = valid.child('network_identifier').str('blockchain');
+      const network = valid.child('network_identifier').str('network');
+&nbsp;
+      enforce(blockchain === pkg.blockchain, 'Invalid blockchain');
+      enforce(network === this.network.toString(), 'Invalid network.');
+&nbsp;
+      const options = new NetworkOptions(this.pool.options.agent);
+      res.json(200, options.toJSON());
+    });
+&nbsp;
+    this.post('/network/status', async (req, res) =&gt; {
+      const valid = Validator.fromRequest(req);
+      enforce(valid.has('network_identifier'), 'Network is required');
+&nbsp;
+      const blockchain = valid.child('network_identifier').str('blockchain');
+      const network = valid.child('network_identifier').str('network');
+&nbsp;
+      enforce(blockchain === pkg.blockchain, 'Invalid blockchain');
+      enforce(network === this.network.toString(), 'Invalid network.');
+&nbsp;
+      const peers = [];
+      for (let peer = this.pool.peers.head(); peer; peer = peer.next) {
+<span class="cstat-no" title="statement not covered" >        if (!peer.connected)</span>
+<span class="cstat-no" title="statement not covered" >          continue;</span>
+<span class="cstat-no" title="statement not covered" >        peers.push({</span>
+          peer_id: peer.hostname()
+        });
+      }
+&nbsp;
+      const status = new NetworkStatus(peers, this.chain.tip, this.network);
+      res.json(200, status.toJSON());
+    });
+&nbsp;
+    this.post('/account/balance', async (req, res) =&gt; {
+      const valid = Validator.fromRequest(req);
+      enforce(valid.has('network_identifier'), 'Network is required');
+&nbsp;
+      const blockchain = valid.child('network_identifier').str('blockchain');
+      const network = valid.child('network_identifier').str('network');
+&nbsp;
+      enforce(blockchain === pkg.blockchain, 'Invalid blockchain');
+      enforce(network === this.network.toString(), 'Invalid network.');
+&nbsp;
+      enforce(valid.has('account_identifier'), 'Account is required');
+&nbsp;
+      const address = valid.child('account_identifier').str('address');
+      enforce(address, 'Address is required.');
+&nbsp;
+      let height;
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (valid.has('block_identifier')) {
+<span class="cstat-no" title="statement not covered" >        height = valid.child('block_identifier').uint('index');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        enforce(height != null, 'Height is required.');</span>
+      }
+&nbsp;
+      // We do not support querying account balance by height yet.
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (height != null) {
+<span class="cstat-no" title="statement not covered" >        res.json(500, {</span>
+          code: -5,
+          message: 'Not supported.',
+          retriable: false
+        });
+<span class="cstat-no" title="statement not covered" >        return;</span>
+      }
+&nbsp;
+      height = this.chain.height;
+      const coins = await this.chain.getCoinsByAddress(address);
+      const block = await this.chain.getBlock(height);
+&nbsp;
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (!block) {
+<span class="cstat-no" title="statement not covered" >        res.json(404);</span>
+<span class="cstat-no" title="statement not covered" >        return;</span>
+      }
+&nbsp;
+      let balance = 0;
+      for (const coin of coins) {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (coin.address.isUnspendable())
+<span class="cstat-no" title="statement not covered" >          continue;</span>
+&nbsp;
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (coin.covenant.isUnspendable())
+<span class="cstat-no" title="statement not covered" >          continue;</span>
+&nbsp;
+        // REGISTER-&gt;REVOKE covenants have no effect.
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (coin.covenant.type &gt;= CovenantTypes.REGISTER
+          &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >coin.covenant.type &lt;= CovenantTypes.REVOKE)</span> {
+<span class="cstat-no" title="statement not covered" >          continue;</span>
+        }
+&nbsp;
+        balance += coin.value;
+      }
+&nbsp;
+      const account = new AccountBalance(height, block, balance);
+      res.json(200, account.toJSON());
+    });
+&nbsp;
+    this.post('/block', async (req, res) =&gt; {
+      const valid = Validator.fromRequest(req);
+      enforce(valid.has('network_identifier'), 'Network is required');
+&nbsp;
+      const blockchain = valid.child('network_identifier').str('blockchain');
+      const network = valid.child('network_identifier').str('network');
+&nbsp;
+      enforce(blockchain === pkg.blockchain, 'Invalid blockchain');
+      enforce(network === this.network.toString(), 'Invalid network.');
+&nbsp;
+      enforce(valid.has('block_identifier'), 'Block is required');
+&nbsp;
+      const hash = valid.child('block_identifier').uintbhash('hash');
+      const height = valid.child('block_identifier').uint('index');
+&nbsp;
+      enforce(height != null, 'Height is required.');
+&nbsp;
+      const block = await this.chain.getBlock(height);
+&nbsp;
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (!block) {
+<span class="cstat-no" title="statement not covered" >        res.json(404);</span>
+<span class="cstat-no" title="statement not covered" >        return;</span>
+      }
+&nbsp;
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (hash) {
+        enforce(block.hashHex() === hash.toString('hex'),
+          'Block hash mismatch.');
+      }
+&nbsp;
+      const view = await this.chain.getBlockView(block);
+&nbsp;
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (!view) {
+<span class="cstat-no" title="statement not covered" >        res.json(404);</span>
+<span class="cstat-no" title="statement not covered" >        return;</span>
+      }
+&nbsp;
+      const prev = new BlockMeta(height, block.hash());
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (prev.height !== 0) {
+<span class="cstat-no" title="statement not covered" >        prev.height = await this.chain.getHeight(block.prevBlock);</span>
+<span class="cstat-no" title="statement not covered" >        prev.hash = block.prevBlock;</span>
+      }
+&nbsp;
+      const result = new Block(height, block, view, prev, this.network);
+      res.json(200, result.toJSON());
+    });
+&nbsp;
+    this.post('/block/transaction', async (req, res) =&gt; {
+      const valid = Validator.fromRequest(req);
+      enforce(valid.has('network_identifier'), 'Network is required');
+&nbsp;
+      const blockchain = valid.child('network_identifier').str('blockchain');
+      const network = valid.child('network_identifier').str('network');
+&nbsp;
+      enforce(blockchain === pkg.blockchain, 'Invalid blockchain');
+      enforce(network === this.network.toString(), 'Invalid network.');
+&nbsp;
+      enforce(valid.has('block_identifier'), 'Block is required');
+      enforce(valid.has('transaction_identifier'), 'Transaction is required');
+&nbsp;
+      let hash = valid.child('block_identifier').uintbhash('hash');
+      const height = valid.child('block_identifier').uint('index');
+&nbsp;
+      enforce(height != null, 'Height is required.');
+&nbsp;
+      const block = await this.chain.getBlock(height);
+&nbsp;
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (!block) {
+<span class="cstat-no" title="statement not covered" >        res.json(404);</span>
+<span class="cstat-no" title="statement not covered" >        return;</span>
+      }
+&nbsp;
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (hash) {
+        enforce(block.hashHex() === hash.toString('hex'),
+          'Block hash mismatch.');
+      }
+&nbsp;
+      hash = valid.child('transaction_identifier').uintbhash('hash');
+      enforce(hash, 'Transaction hash is required');
+&nbsp;
+      const tx = await this.chain.getTX(hash);
+&nbsp;
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (!tx) {
+<span class="cstat-no" title="statement not covered" >        res.json(404);</span>
+<span class="cstat-no" title="statement not covered" >        return;</span>
+      }
+&nbsp;
+      const view = await this.chain.getBlockView(block);
+&nbsp;
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (!view) {
+<span class="cstat-no" title="statement not covered" >        res.json(404);</span>
+<span class="cstat-no" title="statement not covered" >        return;</span>
+      }
+&nbsp;
+      const transaction = new TX(tx, view, this.network);
+      res.json(200, {transaction: transaction.toJSON()});
+    });
+&nbsp;
+    this.post('/construction/metadata', async (req, res) =&gt; {
+      const valid = Validator.fromRequest(req);
+      enforce(valid.has('network_identifier'), 'Network is required');
+&nbsp;
+      const blockchain = valid.child('network_identifier').str('blockchain');
+      const network = valid.child('network_identifier').str('network');
+&nbsp;
+      enforce(blockchain === pkg.blockchain, 'Invalid blockchain');
+      enforce(network === this.network.toString(), 'Invalid network.');
+&nbsp;
+      res.json(200, {
+          metadata: {
+            recent_block_hash: this.chain.tip.hash.toString('hex')
+          }
+        }
+      );
+    });
+&nbsp;
+    this.post('/construction/submit', <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
+      const valid = <span class="cstat-no" title="statement not covered" >Validator.fromRequest(req);</span>
+<span class="cstat-no" title="statement not covered" >      enforce(valid.has('network_identifier'), 'Network is required');</span>
+&nbsp;
+      const blockchain = <span class="cstat-no" title="statement not covered" >valid.child('network_identifier').str('blockchain');</span>
+      const network = <span class="cstat-no" title="statement not covered" >valid.child('network_identifier').str('network');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      enforce(blockchain === pkg.blockchain, 'Invalid blockchain');</span>
+<span class="cstat-no" title="statement not covered" >      enforce(network === this.network.toString(), 'Invalid network.');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      enforce(valid.has('signed_transaction'),</span>
+        'Signed transaction is required');
+      const json = <span class="cstat-no" title="statement not covered" >await this.rpc.call({</span>
+        method: 'sendrawtransaction',
+        params: [req.body.signed_transaction]
+      }, {});
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (json.error) {</span>
+<span class="cstat-no" title="statement not covered" >        res.json(500, {</span>
+          code: json.error.code,
+          message: json.error.message,
+          retriable: true
+        });
+<span class="cstat-no" title="statement not covered" >        return;</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      res.json(200, {</span>
+          transaction_identifier: {
+            hash: json.result
+          }
+        }
+      );
+    });
+&nbsp;
+    this.post('/mempool', async (req, res) =&gt; {
+      const valid = Validator.fromRequest(req);
+      enforce(valid.has('network_identifier'), 'Network is required');
+&nbsp;
+      const blockchain = valid.child('network_identifier').str('blockchain');
+      const network = valid.child('network_identifier').str('network');
+&nbsp;
+      enforce(blockchain === pkg.blockchain, 'Invalid blockchain');
+      enforce(network === this.network.toString(), 'Invalid network.');
+&nbsp;
+      const txs = this.mempool.getSnapshot();
+&nbsp;
+      const mempool = new Mempool(txs);
+      res.json(200, mempool.toJSON());
+    });
+&nbsp;
+    this.post('/mempool/transaction', <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
+      const valid = <span class="cstat-no" title="statement not covered" >Validator.fromRequest(req);</span>
+<span class="cstat-no" title="statement not covered" >      enforce(valid.has('network_identifier'), 'Network is required');</span>
+&nbsp;
+      const blockchain = <span class="cstat-no" title="statement not covered" >valid.child('network_identifier').str('blockchain');</span>
+      const network = <span class="cstat-no" title="statement not covered" >valid.child('network_identifier').str('network');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      enforce(blockchain === pkg.blockchain, 'Invalid blockchain');</span>
+<span class="cstat-no" title="statement not covered" >      enforce(network === this.network.toString(), 'Invalid network.');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      enforce(valid.has('transaction_identifier'), 'Transaction is required');</span>
+      const hash = <span class="cstat-no" title="statement not covered" >valid.child('transaction_identifier').uintbhash('hash');</span>
+      const tx = <span class="cstat-no" title="statement not covered" >this.mempool.getTX(hash);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (!tx) {</span>
+<span class="cstat-no" title="statement not covered" >        res.json(404);</span>
+<span class="cstat-no" title="statement not covered" >        return;</span>
+      }
+&nbsp;
+      const view = <span class="cstat-no" title="statement not covered" >await this.mempool.getCoinView(tx);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (!view) {</span>
+<span class="cstat-no" title="statement not covered" >        res.json(404);</span>
+<span class="cstat-no" title="statement not covered" >        return;</span>
+      }
+&nbsp;
+      const transaction = <span class="cstat-no" title="statement not covered" >new TX(tx, view, this.network);</span>
+<span class="cstat-no" title="statement not covered" >      res.json(200, {transaction: transaction.toJSON()});</span>
+    });
+  }
+}
+&nbsp;
+class HTTPOptions {
+  /**
+   * HTTPOptions
+   * @alias module:http.HTTPOptions
+   * @constructor
+   * @param {Object} options
+   */
+&nbsp;
+  constructor(options) {
+    this.logger = null;
+    this.node = null;
+    this.apiKey = base58.encode(random.randomBytes(20));
+    this.apiHash = sha256.digest(Buffer.from(this.apiKey, 'ascii'));
+    this.noAuth = false;
+    this.cors = false;
+&nbsp;
+    this.prefix = null;
+    this.host = '127.0.0.1';
+    this.port = 8080;
+    this.ssl = false;
+    this.keyFile = null;
+    this.certFile = null;
+&nbsp;
+    this.fromOptions(options);
+  }
+&nbsp;
+  /**
+   * Inject properties from object.
+   * @private
+   * @param {Object} options
+   * @returns {HTTPOptions}
+   */
+&nbsp;
+  fromOptions(options) {
+    assert(options);
+    assert(options.node &amp;&amp; typeof options.node === 'object',
+      'Rosetta HTTP Server requires a Node.');
+&nbsp;
+    this.node = options.node;
+    this.logger = options.node.logger;
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (options.logger != null) {
+      assert(typeof options.logger === 'object');
+      this.logger = options.logger;
+    }
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (options.apiKey != null) {
+<span class="cstat-no" title="statement not covered" >      assert(typeof options.apiKey === 'string',</span>
+        'API key must be a string.');
+<span class="cstat-no" title="statement not covered" >      assert(options.apiKey.length &lt;= 255,</span>
+        'API key must be under 256 bytes.');
+<span class="cstat-no" title="statement not covered" >      this.apiKey = options.apiKey;</span>
+<span class="cstat-no" title="statement not covered" >      this.apiHash = sha256.digest(Buffer.from(this.apiKey, 'ascii'));</span>
+    }
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (options.noAuth != null) {
+<span class="cstat-no" title="statement not covered" >      assert(typeof options.noAuth === 'boolean');</span>
+<span class="cstat-no" title="statement not covered" >      this.noAuth = options.noAuth;</span>
+    }
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (options.cors != null) {
+<span class="cstat-no" title="statement not covered" >      assert(typeof options.cors === 'boolean');</span>
+<span class="cstat-no" title="statement not covered" >      this.cors = options.cors;</span>
+    }
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (options.prefix != null) {
+      assert(typeof options.prefix === 'string');
+      this.prefix = options.prefix;
+      this.keyFile = path.join(this.prefix, 'key.pem');
+      this.certFile = path.join(this.prefix, 'cert.pem');
+    }
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (options.host != null) {
+<span class="cstat-no" title="statement not covered" >      assert(typeof options.host === 'string');</span>
+<span class="cstat-no" title="statement not covered" >      this.host = options.host;</span>
+    }
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (options.port != null) {
+<span class="cstat-no" title="statement not covered" >      assert((options.port &amp; 0xffff) === options.port,</span>
+        'Port must be a number.');
+<span class="cstat-no" title="statement not covered" >      this.port = options.port;</span>
+    }
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (options.ssl != null) {
+<span class="cstat-no" title="statement not covered" >      assert(typeof options.ssl === 'boolean');</span>
+<span class="cstat-no" title="statement not covered" >      this.ssl = options.ssl;</span>
+    }
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (options.keyFile != null) {
+<span class="cstat-no" title="statement not covered" >      assert(typeof options.keyFile === 'string');</span>
+<span class="cstat-no" title="statement not covered" >      this.keyFile = options.keyFile;</span>
+    }
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (options.certFile != null) {
+<span class="cstat-no" title="statement not covered" >      assert(typeof options.certFile === 'string');</span>
+<span class="cstat-no" title="statement not covered" >      this.certFile = options.certFile;</span>
+    }
+&nbsp;
+    // Allow no-auth implicitly
+    // if we're listening locally.
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (!options.apiKey) {
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (this.host === '127.0.0.1' || <span class="branch-1 cbranch-no" title="branch not covered" >this.host === '::1')</span>
+        this.noAuth = true;
+    }
+&nbsp;
+    return this;
+  }
+}
+&nbsp;
+/*
+ * Helpers
+ */
+&nbsp;
+function enforce(value, msg) {
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (!value) {
+    const err = <span class="cstat-no" title="statement not covered" >new Error(msg);</span>
+<span class="cstat-no" title="statement not covered" >    err.code = -1;</span>
+<span class="cstat-no" title="statement not covered" >    err.statusCode = 400;</span>
+<span class="cstat-no" title="statement not covered" >    throw err;</span>
+  }
+}
+&nbsp;
+/*
+ * Expose
+ */
+&nbsp;
+module.exports = HTTP;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Jun 11 2020 20:05:22 GMT+0530 (India Standard Time)
+</div>
+</div>
+<script src="prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="sorter.js"></script>
+</body>
+</html>

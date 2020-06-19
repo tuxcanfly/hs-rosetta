@@ -1,9 +1,0 @@
-{
-  "network_identifier": {
-    "blockchain": "handshake",
-    "network": "simnet"
-  },
-  "transaction_identifier": {
-    "hash": "<placeholder>"
-  }
-}
