@@ -20,6 +20,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
@@ -27,4 +28,19 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm run lint
-    - run: npm test
+      
+    - name: Docs
+      uses: andstor/jsdoc-action@v1
+      with:
+        source_dir: ./
+        recurse: true
+        output_dir: ./docs
+        config_file: jsdoc.json
+        template: minami
+        front_page: README.md
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        publish_dir: ./docs
