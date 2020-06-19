@@ -64,10 +64,10 @@ report it.
 Options to the Rosetta HTTP Server can be configured by using the following
 arguments prefix with `--rosetta`, for example: `--rosetta-http-port=8123`:
 
-      http-host: HTTP host (127.0.0.1)
+      http-host: HTTP host (0.0.0.0)
       http-port: HTTP port (8080)
       api-key: API key (disabled)
-      no-auth: Disable auth (disabled for localhost)
+      no-auth: Disable auth (disabled for 0.0.0.0)
       cors: Enable CORS (disabled)
       ssl: Whether to enable SSL (false)
       ssl-key: SSL key (disabled)
