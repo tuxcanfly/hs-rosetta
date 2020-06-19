@@ -1,12 +1,18 @@
 # hs-rosetta
 
-hs-rosetta is a [hsd][hsd] plugin for coinbase rosetta.
+hs-rosetta is a [hsd][hsd] plugin for [rosetta][Coinbase Rosetta].
 
 ## Usage
 
     hsd --plugins hs-rosetta --index-tx --index-address
 
 requires `--index-tx` `--index-address` for reporting account balances.
+
+> :warning: **NOTE**: By default hs-rosetta listens on the public interface
+> `0.0.0.0` to allow Docker port-forwarding and conform to Rosetta
+> specification. Please make sure to use `--rosetta-host` to change to
+> `localhost` or secure the server using `--ssl` and `--api-key` flags if you
+> are not running Docker.
 
 ## Reference
 
@@ -95,3 +101,4 @@ Copyright (c) 2020, The Handshake Developers (MIT License)
 See LICENSE for more info.
 
 [hsd]: https://github.com/handshake-org/hsd
+[rosetta]: https://rosetta-api.org
