@@ -32,8 +32,6 @@ jobs:
     - name: Docs
       uses: andstor/jsdoc-action@v1
       with:
-        source_dir: ./
-        recurse: true
         output_dir: ./docs
         config_file: jsdoc.json
         template: minami
